@@ -5,34 +5,39 @@ public class Programa {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		
-		System.out.println("Taxa de adm: "+Conta.TAXA_ADMINISTRACAO);
-		
-		Conta c1 = new ContaCorrente("123", "AA", "Gustavo", "000",  "24-12-2020");
+		IConta conta1 = new ContaCorrente("123", "AA", "24-12-2020");
 
-		Conta c2 = new ContaPoupanca("222", "AA", "Maria", "030", "24-12-2020");
-
-		System.out.println("CONTAS CRIADAS SEM SALDO: ");
-		System.out.println(c1);
-		System.out.println(c2);
-
-		c1.depositar(1000f);
-		c2.depositar(100f);
+		IConta conta2 = new ContaPoupanca("321", "BB", "31/12/2020");
 		
-		System.out.println("CONTAS COM SALDO: ");
-		System.out.println(c1);
-		System.out.println(c2);
+		IConta conta3 = new ContaInvestimento("444", "CC", "31/12/2020");
+		
+		ContaSalario conta4 = new ContaSalario("555", "DD", "01/01/2021"); 
 		
 		
-		c1.transferencia(c2, 100f);
-		
-		System.out.println("CONTAS APÓS TRANSFERÊNCIA: ");
-		System.out.println(c1);
-
-		System.out.println(c2);
+		Cliente cliente1 = new Cliente("000", "Gustavo", "13/01/2020");
 		
 		
-
+		cliente1.adicionarContaCliente(conta1);
+		
+		cliente1.adicionarContaCliente(conta2);
+		
+		cliente1.adicionarTelefone("83-99999-9999");
+		
+		cliente1.adicionarTelefone("82-99999-9999");
+		
+		cliente1.adicionarTelefone("81-99999-9999");
+		
+		cliente1.removerTelefone("88-99999-9999");
+		
+		cliente1.adicionarContaCliente(conta3);		
+		
+		cliente1.adicionarContaCliente(conta4);
+		
+		System.out.println(cliente1.contemContaCliente(conta3));
+		System.out.println(cliente1);
+		
+		conta4.transferencia(null, 0f);
+		
 	}
 
 }
