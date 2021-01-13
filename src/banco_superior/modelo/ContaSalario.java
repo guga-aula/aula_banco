@@ -1,6 +1,8 @@
 package banco_superior.modelo;
 
-public class ContaSalario implements IConta{
+import java.io.Serializable;
+
+public class ContaSalario implements IConta, Serializable{
 
 	String numeroConta;
 	String agencia;

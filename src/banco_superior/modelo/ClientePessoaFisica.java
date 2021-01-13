@@ -1,26 +1,36 @@
 package banco_superior.modelo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-public class Cliente {
+public class ClientePessoaFisica implements ICliente, Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	String cpf;
 	String nome;
 	String dataNascimento;
-	
 	String email;
 	
 	HashSet<String> telefones = new HashSet<String>();
 	
 	private List<IConta> contas = new ArrayList<IConta>();
 	
-	public Cliente(String cpf, String nome, String dataNascimento) {
+	public ClientePessoaFisica(String cpf, String nome, String dataNascimento) {
 		super();
 		this.cpf = cpf;
 		this.nome = nome;
 		this.dataNascimento = dataNascimento;
+	}
+	
+	public ClientePessoaFisica(String cpf)
+	{
+		this.cpf = cpf;
 	}
 
 	
@@ -44,7 +54,7 @@ public class Cliente {
 	@Override
 	public boolean equals(Object obj) {
 		
-		Cliente other = (Cliente) obj;
+		ClientePessoaFisica other = (ClientePessoaFisica) obj;
 		if (this.cpf == null) 
 		{
 			if (other.cpf != null)
