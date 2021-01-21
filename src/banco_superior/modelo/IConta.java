@@ -1,5 +1,7 @@
 package banco_superior.modelo;
 
+import banco_superior.excecao.SaldoInsuficienteException;
+
 public interface IConta {
 
 	float CUSTO_SACAR_CONTA_CORRENTE = 0.01f;
@@ -10,13 +12,13 @@ public interface IConta {
 	
 	public float saldo = 0f;
 	
-	public void sacar(float valorSacado);
+	public void sacar(float valorSacado) throws SaldoInsuficienteException;
 	
 	public void depositar(float valorDepositado);
 	
 	public void desativarConta();
 	
-	public void transferencia(IConta contaDestino, float valorTransferido);
+	public void transferencia(IConta contaDestino, float valorTransferido) throws SaldoInsuficienteException;
 	
 	public void ativarConta();
 	

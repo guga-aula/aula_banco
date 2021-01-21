@@ -66,7 +66,34 @@ public class ContaCorrente implements IConta, Serializable{
 	public String toString() {
 		return "ContaCorrente [numeroConta=" + numeroConta + ", agencia=" + agencia + ", saldo=" + saldo + ", status="
 				+ status + ", dataAbertura=" + dataAbertura + "]";
-	}	
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((numeroConta == null) ? 0 : numeroConta.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ContaCorrente other = (ContaCorrente) obj;
+		if (numeroConta == null) {
+			if (other.numeroConta != null)
+				return false;
+		} else if (!numeroConta.equals(other.numeroConta))
+			return false;
+		return true;
+	}
+	
+	
 	
 	
 

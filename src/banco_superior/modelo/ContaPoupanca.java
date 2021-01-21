@@ -2,6 +2,8 @@ package banco_superior.modelo;
 
 import java.io.Serializable;
 
+import banco_superior.excecao.SaldoInsuficienteException;
+
 public class ContaPoupanca implements IConta, Serializable{
 
 	String numeroConta;
@@ -17,7 +19,7 @@ public class ContaPoupanca implements IConta, Serializable{
 	}
 
 	@Override
-	public void transferencia(IConta contaDestino, float valorTransferido) {
+	public void transferencia(IConta contaDestino, float valorTransferido) throws SaldoInsuficienteException{
 		// TODO Auto-generated method stub
 		
 		if(contaDestino instanceof ContaPoupanca)
@@ -29,13 +31,17 @@ public class ContaPoupanca implements IConta, Serializable{
 	}
 
 	@Override
-	public void sacar(float valorSacado) {
+	public void sacar(float valorSacado) throws SaldoInsuficienteException{
+		
 		if(valorSacado > 0 && this.saldo >= 
 				(valorSacado+(valorSacado*CUSTO_SACAR_CONTA_POUPANCA)) && this.status)
 		{
 			this.saldo -= (valorSacado+(valorSacado*CUSTO_SACAR_CONTA_POUPANCA));
 		}
-		
+		else if((valorSacado+(valorSacado*CUSTO_SACAR_CONTA_POUPANCA))>saldo)
+		{
+			throw new SaldoInsuficienteException("Saldo insuficiente!");
+		}
 	}
 
 	@Override

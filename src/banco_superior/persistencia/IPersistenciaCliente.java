@@ -1,11 +1,12 @@
 package banco_superior.persistencia;
 
+import banco_superior.excecao.ClienteJaCadastradoException;
 import banco_superior.modelo.ICliente;
 
 public interface IPersistenciaCliente {
 
 	
-	public void cadastrarCliente(ICliente obj);
+	public void cadastrarCliente(ICliente obj) throws ClienteJaCadastradoException;
 	
 	public ICliente localizarClientePorCPF(String cpf);
 	
