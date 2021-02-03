@@ -22,10 +22,17 @@ public class ContaPoupanca implements IConta, Serializable{
 	public void transferencia(IConta contaDestino, float valorTransferido) throws SaldoInsuficienteException{
 		// TODO Auto-generated method stub
 		
-		if(contaDestino instanceof ContaPoupanca)
+		if(contaDestino instanceof ContaCorrente || contaDestino instanceof ContaInvestimento)
 		{
-			this.sacar(valorTransferido+(valorTransferido*TAXA_ADMINISTRACAO));
-			contaDestino.depositar(valorTransferido);
+			if(valorTransferido > 0 && this.saldo >= 
+					(valorTransferido+(valorTransferido*TAXA_ADMINISTRACAO)) && this.status)
+			{
+				this.saldo -= (valorTransferido+(valorTransferido*TAXA_ADMINISTRACAO));
+			}
+			else if((valorTransferido+(valorTransferido*TAXA_ADMINISTRACAO))>saldo)
+			{
+				throw new SaldoInsuficienteException("Saldo insuficiente para a quantia de R$"+valorTransferido+". Saldo disponível para saque R$"+saldo);
+			}
 		}
 		
 	}

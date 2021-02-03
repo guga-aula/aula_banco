@@ -9,6 +9,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import banco_superior.excecao.CadastroNaoEncontradoException;
 import banco_superior.excecao.ClienteJaCadastradoException;
 import banco_superior.modelo.ClientePessoaFisica;
 import banco_superior.modelo.ClientePessoaJuridica;
@@ -35,40 +36,64 @@ public class PersistenciaEmArquivoCliente implements IPersistenciaCliente {
 	}
 
 	@Override
-	public ICliente localizarClientePorCPF(String cpf) {
+	public ICliente localizarClientePorCPF(String cpf) throws CadastroNaoEncontradoException{
 		// TODO Auto-generated method stub
 		ICliente cliente = new ClientePessoaFisica(cpf);
 
 		if (clientesCadastrados.contains(cliente)) {
 			int index = clientesCadastrados.indexOf(cliente);
 			cliente = clientesCadastrados.get(index);
+			return cliente;
 		}
-		return cliente;
+		else
+			throw new CadastroNaoEncontradoException("Não é possível remover o cadastro "+cliente.getClass().getName()+", pois não foi encontrado");
+
 	}
 
 	@Override
-	public ICliente localizarClientePorCNPJ(String cnpj) {
+	public ICliente localizarClientePorCNPJ(String cnpj) throws CadastroNaoEncontradoException{
 		
 		ICliente cliente = new ClientePessoaJuridica(cnpj);
 
 		if (clientesCadastrados.contains(cliente)) {
 			int index = clientesCadastrados.indexOf(cliente);
 			cliente = clientesCadastrados.get(index);
+			return cliente;
 		}
-		return cliente;
+		else
+			throw new CadastroNaoEncontradoException("Não é possível remover o cadastro "+cliente.getClass().getName()+", pois não foi encontrado");
+		
 	}
 
 	@Override
-	public void removerCliente(ICliente obj) {
+	public void removerCliente(ICliente obj) throws CadastroNaoEncontradoException {
 		// TODO Auto-generated method stub
 		if (clientesCadastrados.contains(obj)) {
 			clientesCadastrados.remove(obj);
 			salvarEmArquivo();
 		}
+		else
+			throw new CadastroNaoEncontradoException("Não é possível remover o cadastro "+obj.getClass().getName()+", pois não foi encontrado");
 
 	}
+	
+	@Override
+	public void atualizarCliente(ICliente obj) throws CadastroNaoEncontradoException{
+		// TODO Auto-generated method stub
+		if(clientesCadastrados.contains(obj))
+		{
+			int index = clientesCadastrados.indexOf(obj);
+			clientesCadastrados.set(index, obj);
+			salvarEmArquivo();
+		}
+		else
+		{
+			throw new CadastroNaoEncontradoException("Cadastro do "+obj.getClass().getName()+" não encontrado!");
+		}
+		
+	}
 
-	private void salvarEmArquivo() {
+	public void salvarEmArquivo() {
 		try {
 			FileOutputStream fos = new FileOutputStream("persistencia_cliente.dat");
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
