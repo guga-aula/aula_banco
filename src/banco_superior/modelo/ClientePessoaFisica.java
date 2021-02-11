@@ -21,11 +21,12 @@ public class ClientePessoaFisica implements ICliente, Serializable{
 	
 	private List<IConta> contas = new ArrayList<IConta>();
 	
-	public ClientePessoaFisica(String cpf, String nome, String dataNascimento) {
+	public ClientePessoaFisica(String cpf, String nome, String dataNascimento, String email) {
 		super();
 		this.cpf = cpf;
 		this.nome = nome;
 		this.dataNascimento = dataNascimento;
+		this.email = email;
 	}
 	
 	public ClientePessoaFisica(String cpf)

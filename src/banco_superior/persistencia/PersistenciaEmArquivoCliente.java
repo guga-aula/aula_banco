@@ -17,10 +17,23 @@ import banco_superior.modelo.ICliente;
 
 public class PersistenciaEmArquivoCliente implements IPersistenciaCliente {
 
+	private static PersistenciaEmArquivoCliente pac;
 	private List<ICliente> clientesCadastrados = new ArrayList<ICliente>();
 
-	public PersistenciaEmArquivoCliente() {
+	
+	private PersistenciaEmArquivoCliente() {
 		lerConteudoArquivo();
+	}
+	
+	public synchronized static PersistenciaEmArquivoCliente pegarInstancia()
+	{
+		if(pac == null)
+		{
+			pac = new PersistenciaEmArquivoCliente();
+			return pac;
+		}
+		else
+			return pac;
 	}
 
 	@Override
@@ -46,7 +59,7 @@ public class PersistenciaEmArquivoCliente implements IPersistenciaCliente {
 			return cliente;
 		}
 		else
-			throw new CadastroNaoEncontradoException("Não é possível remover o cadastro "+cliente.getClass().getName()+", pois não foi encontrado");
+			throw new CadastroNaoEncontradoException("Não é possível encontrar o cadastro "+cliente.getClass().getName()+", pois não foi encontrado");
 
 	}
 
