@@ -1,6 +1,7 @@
 package banco_superior.modelo;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import banco_superior.excecao.SaldoInsuficienteException;
 
@@ -10,11 +11,11 @@ public class ContaCorrente implements IConta, Serializable{
 	String agencia;
 	private float saldo;
 	boolean status;
-	String dataAbertura;
+	Date dataAbertura;
 	
 	static final float TAXA_MANUTENCAO = 0.01f;
 	
-	public ContaCorrente(String numeroConta, String agencia,String dataAbertura) {
+	public ContaCorrente(String numeroConta, String agencia,Date dataAbertura) {
 		
 		this.numeroConta = numeroConta;
 		this.agencia = agencia;

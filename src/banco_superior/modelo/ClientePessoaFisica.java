@@ -38,8 +38,7 @@ public class ClientePessoaFisica implements ICliente, Serializable{
 
 	@Override
 	public String toString() {
-		return "Cliente [cpf=" + cpf + ", nome=" + nome + ", dataNascimento=" + dataNascimento + ", telefones="
-				+ telefones + ", contas=" + contas + "]";
+		return "Cliente [cpf=" + cpf + ", nome=" + nome + ", contas=" + contas + "]";
 	}
 
 

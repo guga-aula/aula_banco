@@ -105,6 +105,20 @@ public class PersistenciaEmArquivoCliente implements IPersistenciaCliente {
 		}
 		
 	}
+	
+	public Iterable<ICliente> listaClientesCadastradosPF()
+	{
+		List<ICliente> listaPF = new ArrayList<ICliente>();
+		
+		for(ICliente pf : clientesCadastrados)
+		{
+			if(pf instanceof ClientePessoaFisica)
+			{
+				listaPF.add(pf);
+			}
+		}
+		return listaPF;
+	}
 
 	public void salvarEmArquivo() {
 		try {
