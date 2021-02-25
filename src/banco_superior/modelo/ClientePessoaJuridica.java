@@ -87,6 +87,12 @@ public class ClientePessoaJuridica implements ICliente, Serializable{
 	public IConta buscarContaInvestimento(String numeroConta) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Iterable<IConta> getContasCliente() {
+		// TODO Auto-generated method stub
+		return contas;
 	}	
 	
 

@@ -121,5 +121,11 @@ public class ClientePessoaFisica implements ICliente, Serializable{
 		
 		return conta;
 	}
+
+	@Override
+	public Iterable<IConta> getContasCliente() {
+		// TODO Auto-generated method stub
+		return contas;
+	}
 	
 }

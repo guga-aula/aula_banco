@@ -6,6 +6,10 @@ import banco_superior.excecao.SaldoInsuficienteException;
 
 public class ContaPoupanca implements IConta, Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	String numeroConta;
 	String agencia;
 	private float saldo;
@@ -74,6 +78,30 @@ public class ContaPoupanca implements IConta, Serializable{
 	public String toString() {
 		return "ContaPoupanca [numeroConta=" + numeroConta + ", agencia=" + agencia + ", saldo=" + saldo + ", status="
 				+ status + ", dataAbertura=" + dataAbertura + "]";
+	}
+	
+	@Override
+	public String getAgencia() {
+		// TODO Auto-generated method stub
+		return agencia;
+	}
+
+	@Override
+	public float getSaldo() {
+		// TODO Auto-generated method stub
+		return saldo;
+	}
+
+	@Override
+	public boolean getStatus() {
+		// TODO Auto-generated method stub
+		return status;
+	}
+
+	@Override
+	public String getConta() {
+		// TODO Auto-generated method stub
+		return numeroConta;
 	}
 	
 	

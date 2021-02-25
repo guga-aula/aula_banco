@@ -8,6 +8,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.event.MenuEvent;
+import javax.swing.event.MenuListener;
 
 public class TelaPrincipal extends JFrame{
 
@@ -20,6 +22,9 @@ public class TelaPrincipal extends JFrame{
 	private JMenu mnCadastrar;
 	private JMenuItem mntmCadastrarClientePf;
 	private JMenuItem mntmCadastrarContaCorrente;
+	private JMenu mnConsultarContas;
+	private JMenuItem mntmListarContasCliente;
+	private JMenu mnSair;
 	
 	public TelaPrincipal() 
 	{
@@ -28,6 +33,7 @@ public class TelaPrincipal extends JFrame{
 		setTitle("Tela Principal");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
+		setLocationRelativeTo(null);
 		
 		menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -62,11 +68,11 @@ public class TelaPrincipal extends JFrame{
 		});
 		mnCadastrarContas.add(mntmCadastrarContaCorrente);
 		
-		JMenu mnSair = new JMenu("Sair");
-		mnSair.addActionListener(new ActionListener() {
+		mnSair = new JMenu("Sair");
+		mnSair.addMenuListener(new MenuListener() {
 			
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void menuSelected(MenuEvent e) {
 				// TODO Auto-generated method stub
 				int resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente sair da aplicação?");
 				if(resposta == 0)
@@ -78,7 +84,33 @@ public class TelaPrincipal extends JFrame{
 					
 				}
 			}
+			
+			@Override
+			public void menuDeselected(MenuEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void menuCanceled(MenuEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
 		});
+		
+		mnConsultarContas = new JMenu("Consultar Contas");
+		menuBar.add(mnConsultarContas);
+		
+		mntmListarContasCliente = new JMenuItem("Listar Contas Cliente PF");
+		mntmListarContasCliente.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				new TelaConsultaContaClientePF();
+			}
+		});
+		mnConsultarContas.add(mntmListarContasCliente);
 		menuBar.add(mnSair);
 		setVisible(true);
 	}

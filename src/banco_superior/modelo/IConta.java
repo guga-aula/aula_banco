@@ -23,4 +23,12 @@ public interface IConta {
 	public void ativarConta();
 	
 	public String toString();
+	
+	public String getAgencia();
+	
+	public float getSaldo();
+	
+	public boolean getStatus();
+	
+	public String getConta();
 }

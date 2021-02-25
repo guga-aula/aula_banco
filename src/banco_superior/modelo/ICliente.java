@@ -12,4 +12,6 @@ public interface ICliente {
 	public void removerTelefone(String telefone);
 	
 	public IConta buscarContaInvestimento(String numeroConta);
+	
+	public Iterable<IConta> getContasCliente();
 }
