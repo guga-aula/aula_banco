@@ -6,6 +6,7 @@ import banco_superior.modelo.ICliente;
 
 public interface IPersistenciaCliente {
 
+	final String ip_address = "127.0.0.1";
 	
 	public void cadastrarCliente(ICliente obj) throws ClienteJaCadastradoException;
 	

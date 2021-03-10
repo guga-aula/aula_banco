@@ -20,6 +20,7 @@ public class PersistenciaEmArquivoCliente implements IPersistenciaCliente {
 	private static PersistenciaEmArquivoCliente pac;
 	private List<ICliente> clientesCadastrados = new ArrayList<ICliente>();
 
+	private static final String ip_address = "127.0.0.1";
 	
 	private PersistenciaEmArquivoCliente() {
 		lerConteudoArquivo();
