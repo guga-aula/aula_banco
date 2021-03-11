@@ -9,6 +9,7 @@ public class ConstantesUtil {
 	public final static String BANCO_SUPERIOR_DATABASE_PATH;
 	public final static String BANCO_SUPERIOR_DATABASE_PORT;
 	public final static String BANCO_SUPERIOR_DATABASE_IP;
+	public final static String BANCO_SUPERIOR_DATABASE_NAME;
 	
 	private static Properties prop; 
 	private static FileInputStream fis; 
@@ -29,7 +30,8 @@ public class ConstantesUtil {
 		
 		BANCO_SUPERIOR_DATABASE_PATH = prop.getProperty("banco_superior_database_path");
 		BANCO_SUPERIOR_DATABASE_PORT = prop.getProperty("banco_superior_database_port");
-		BANCO_SUPERIOR_DATABASE_IP = prop.getProperty("ip");
+		BANCO_SUPERIOR_DATABASE_IP = prop.getProperty("banco_superior_database_ip");
+		BANCO_SUPERIOR_DATABASE_NAME = prop.getProperty("banco_superior_database_name");
 	}
 	
 	public static boolean containsKey(String key)

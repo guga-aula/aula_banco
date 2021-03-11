@@ -19,6 +19,7 @@ import banco_superior.excecao.ClienteJaCadastradoException;
 import banco_superior.modelo.ClientePessoaFisica;
 import banco_superior.modelo.ICliente;
 import banco_superior.persistencia.PersistenciaEmArquivoCliente;
+import banco_superior.persistencia.PersistenciaEmBancoCliente;
 
 public class TelaCadastroPessoaFisica extends JDialog{
 	
@@ -105,7 +106,7 @@ public class TelaCadastroPessoaFisica extends JDialog{
 			public void actionPerformed(ActionEvent e) {
 				clientePf = new ClientePessoaFisica(txfCpf.getText(), txfNome.getText(), txfData.getText(), txfEmail.getText());
 				try {
-					PersistenciaEmArquivoCliente.pegarInstancia().cadastrarCliente(clientePf);
+					PersistenciaEmBancoCliente.pegarInstancia().cadastrarCliente(clientePf);
 					JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");
 				} catch (ClienteJaCadastradoException e1) {
 					// TODO Auto-generated catch block
