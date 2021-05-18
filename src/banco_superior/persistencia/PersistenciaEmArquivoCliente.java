@@ -18,7 +18,7 @@ import banco_superior.modelo.ICliente;
 public class PersistenciaEmArquivoCliente implements IPersistenciaCliente {
 
 	private static PersistenciaEmArquivoCliente pac;
-	private List<ICliente> clientesCadastrados = new ArrayList<ICliente>();
+	private List<ICliente> clientesCadastrados = new ArrayList<>();
 
 	private static final String ip_address = "127.0.0.1";
 	
@@ -122,17 +122,25 @@ public class PersistenciaEmArquivoCliente implements IPersistenciaCliente {
 	}
 
 	public void salvarEmArquivo() {
+		ObjectOutputStream oos = null;
 		try {
 			FileOutputStream fos = new FileOutputStream("persistencia_cliente.dat");
-			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos = new ObjectOutputStream(fos);
 			oos.writeObject(clientesCadastrados);
 			oos.close();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+		finally
+		{
+			if(oos != null)
+				try {
+					oos.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 		}
 	}
 

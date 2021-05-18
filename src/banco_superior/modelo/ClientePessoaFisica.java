@@ -17,9 +17,9 @@ public class ClientePessoaFisica implements ICliente, Serializable{
 	String dataNascimento;
 	String email;
 	
-	HashSet<String> telefones = new HashSet<String>();
+	HashSet<String> telefones = new HashSet<>();
 	
-	private List<IConta> contas = new ArrayList<IConta>();
+	private List<IConta> contas = new ArrayList<>();
 	
 	public ClientePessoaFisica(String cpf, String nome, String dataNascimento, String email) {
 		super();
@@ -45,8 +45,8 @@ public class ClientePessoaFisica implements ICliente, Serializable{
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
+		var prime = 31;
+		var result = 1;
 		result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
 		return result;
 	}
